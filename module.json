@@ -1,0 +1,24 @@
+{
+    "name": "twilight-forms",
+    "title": "Twilight Forms",
+    "description": "Divides long forms into sections and adds a few UX improvements",
+    "author": {
+        "Name": "Sua Mãe, Aquela Católica",
+        "email": "alan@tpk.gg",
+        "discord": "Sua mãe, Aquela Católica#2512"
+    },
+    "version": "1.00",
+    "minimumCoreVersion": "0.8.8",
+    "compatibleCoreVersion": "0.8.8",
+    "scripts": [
+        "form_sections.js",
+        "module_settings_organizer.js"
+    ],
+    "styles": [
+        "form-sections.css"
+    ],
+    "manifest": "https://github.com/Rayuaz/twilight-forms/releases/latest/download/module.json",
+	"url": "https://github.com/Rayuaz/twilight-forms",
+    "download": "https://github.com/Rayuaz/twilight-forms/releases/latest/download/twilight-forms.zip",
+    "readme": "https://github.com/Rayuaz/twilight-forms/blob/master/README.md"
+}

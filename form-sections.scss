@@ -1,0 +1,186 @@
+.sheet nav.form-tabs {
+    height: fit-content;
+    min-height: 32px;
+    padding-top: 5px;
+
+    .form-item {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        line-height: 1.4;
+
+        i {
+            margin-bottom: 5px;
+        }
+    }
+}
+
+input[type="checkbox"]:hover {
+    cursor: pointer;
+}
+
+.tui-form .form-group {
+    gap: 0 20px;
+    padding: 10px 0;
+
+    &:not(:last-child) {
+        border-bottom: 1px solid #b5b3a4;
+    }
+
+    &:hover {
+        background-color: rgba(0,0,0,.05);
+    }
+
+    > label {
+        text-align: right;
+
+        &.for-checkbox:hover {
+            cursor: pointer;
+        }
+    }
+
+    .form-fields {
+        justify-content: start;
+        flex-wrap: wrap;
+    }
+
+    .notes, .hints {
+        padding-right: calc(60% + 7px);
+        text-align: right;
+    }
+
+    label.checkbox {
+        width: calc(100% / 3);
+        margin: 0;
+        text-align: left;
+    }
+}
+
+#client-settings.tui-form {
+    .module-section {
+        border-bottom: 1px solid #782e22;
+
+        .module-header {
+            margin: 0;
+            padding: 10px 0;
+            border: none;
+            display: flex;
+            align-items: center;
+
+            &:before {
+                content: '+';
+                color: #782e22;
+                font-weight: 700;
+                margin-right: 5px;
+                transition: all .12s ease-in-out;
+            }
+
+            &:hover {
+                cursor: pointer;
+                background-color: rgba(255,255,255,.3);
+
+                &:before {
+                    color: #ff6400;
+                }
+            }
+        }
+
+        .module-inputs {
+            display: none;
+        }
+
+        &.active {
+            .module-header:before {
+                transform: rotate(45deg);
+                color: #ff6400;
+            }
+        }
+    }
+}
+
+
+.tidy5e.sheet.item.tui-form .sheet-body .tab {
+    &.item-betterRolls, 
+    &.details, 
+    &.dynamiceffects, 
+    &.magic-items {
+        .form-group {
+            border-bottom: none;
+            
+            label.checkbox {
+                flex: 0 0 calc(100% / 3 - 1px);
+            }
+
+            .spell-materials.flexrow {
+                flex: 0 0 100%;
+                padding-left: calc(40% + 7px);
+                margin-top: 5px;
+            }
+        }
+    }
+    
+}
+
+#client-settings {
+    &.tui-form .form-group {
+        padding-left: 40px;
+        position: relative;
+    
+        > label {
+            text-align: left;
+            flex: 0 0 100%;
+        }
+    
+        .form-fields {
+            flex: 0 0 60%;
+        }
+
+        &.has-checkbox {
+            &:hover {
+                cursor: pointer;
+            }
+
+            .form-fields {
+                position: absolute;
+                top: 1em;
+                left: 10px;
+            }
+        }
+    
+        .notes, .hint {
+            text-align: left;
+            padding: 0;
+            flex: 0 0 60%;
+        }
+
+        button {
+            flex: 0 0 calc(100% - 40px);
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+    .tab[data-tab="system"] {
+        .module-header {
+            padding-left: 40px;
+
+            &:hover {
+                cursor: auto;
+                background: transparent;
+            }
+
+            &:before {
+                display: none;
+            }
+        }
+        .module-inputs {
+            display: block;
+        }
+    }
+}
+
+#module-management .package-title {
+    text-decoration: none;
+}
