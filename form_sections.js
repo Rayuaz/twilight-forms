@@ -1,10 +1,14 @@
 Hooks.on("renderFormApplication", (app) => {
+    
+    if (!$(`div[data-appid="${app.appId}"]`).hasClass('macro-sheet')) {
 
-    $(`div[data-appid="${app.appId}"]`).addClass('tui-form');
-    formFieldOrganizer(app);
+        $(`div[data-appid="${app.appId}"]`).addClass('tui-form');
+        formFieldOrganizer(app);
 
-    // Resize the window to fit it's contents
-    $(`div[data-appid="${app.appId}"]`).css('height', 'auto');
+        // Resize the window to fit it's contents
+        $(`div[data-appid="${app.appId}"]`).css('height', 'auto');
+
+    }
 
 });
 
@@ -229,6 +233,7 @@ function formFieldOrganizer(app) {
 
             // Adds a class for styling
             $(this).find('label').addClass('for-checkbox');
+            $(this).addClass('has-checkbox');
 
             // Toggles the checkbox's state when clicking the parent
             $(this).on('click', function() {

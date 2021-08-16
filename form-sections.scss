@@ -1,7 +1,6 @@
 .sheet nav.form-tabs {
     height: fit-content;
     min-height: 32px;
-    padding-top: 5px;
 
     .form-item {
         display: flex;
@@ -45,8 +44,7 @@ input[type="checkbox"]:hover {
     }
 
     .notes, .hints {
-        padding-right: calc(60% + 7px);
-        text-align: right;
+        padding-left: calc(40% + 13px);
     }
 
     label.checkbox {
