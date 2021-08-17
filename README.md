@@ -4,6 +4,6 @@ A simple module to separate long forms into sections, and make labels align to t
 
 # Screenshots
 
-![](screenshots\scene-video.gif)
-![](screenshots\settings-video.gif)
-![](screenshots\spells-video.gif)
+![](screenshots/scene-video.gif)
+![](screenshots/settings-video.gif)
+![](screenshots/spells-video.gif)
