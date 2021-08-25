@@ -188,7 +188,7 @@ input[type="checkbox"]:hover {
             flex: 0 0 60%;
         }
 
-        button {
+        button:not(.file-picker) {
             flex: 0 0 calc(100% - 40px);
 
             &:hover {
