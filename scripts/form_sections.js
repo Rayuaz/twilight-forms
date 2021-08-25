@@ -1,17 +1,3 @@
-Hooks.on("renderFormApplication", (app) => {
-    
-    if (!$(`div[data-appid="${app.appId}"]`).hasClass('macro-sheet')) {
-
-        $(`div[data-appid="${app.appId}"]`).addClass('tui-form');
-        formFieldOrganizer(app);
-
-        // Resize the window to fit it's contents
-        $(`div[data-appid="${app.appId}"]`).css('height', 'auto');
-
-    }
-
-});
-
 Hooks.on("renderSceneConfig", (app) => {
 
     setTimeout(() => { // Make it not happen instantly, so that other modules can append their stuff before the code runs
@@ -64,38 +50,76 @@ let prevTop;
 
 Hooks.on("renderItemSheet", (app) => {
 
-    form_sectioner(app);
-    formFieldOrganizer(app);
+    if ($('body').hasClass('system-dnd5e')) {
 
-    // Wrap Spell components in .form-fields
-    if ($(`div[data-appid="${app.appId}"]`).find('.spell-components').length > 0) {
-        $(`div[data-appid="${app.appId}"]`).find('.spell-components').append('<div class="form-fields"></div>');
-        $(`div[data-appid="${app.appId}"]`).find('.spell-components').children().each(function() {
-            if ($(this).hasClass('checkbox')) {
-                $(this).appendTo($(this).parent().find('.form-fields'));
-            }
+        form_sectioner(app);
+        formFieldOrganizer(app);
+
+        // Wrap Spell components in .form-fields
+        if ($(`div[data-appid="${app.appId}"]`).find('.spell-components').length > 0) {
+            $(`div[data-appid="${app.appId}"]`).find('.spell-components').append('<div class="form-fields"></div>');
+            $(`div[data-appid="${app.appId}"]`).find('.spell-components').children().each(function() {
+                if ($(this).hasClass('checkbox')) {
+                    $(this).appendTo($(this).parent().find('.form-fields'));
+                }
+            });
+        }
+
+        // Wrap weapon properties in .form-fields
+        if ($(`div[data-appid="${app.appId}"]`).find('.weapon-properties').length > 0) {
+            $(`div[data-appid="${app.appId}"]`).find('.weapon-properties').append('<div class="form-fields"></div>');
+            $(`div[data-appid="${app.appId}"]`).find('.weapon-properties').children().each(function() {
+                if ($(this).hasClass('checkbox')) {
+                    $(this).appendTo($(this).parent().find('.form-fields'));
+                }
+            });
+        }
+
+        // When you click on one of the navigation tabs on the item sheet, it removes
+        // the class .active from everything, including my form section tabs.
+        // This click event makes it that everytime the user clicks on details,
+        // it also triggers a click on the first tab, so that it get an .active
+        $(`div[data-appid="${app.appId}"]`).on('click', 'a.item[data-tab="details"]', function() {
+            $(`div[data-appid="${app.appId}"] .form-tab-${prevTab}`).trigger('click');
         });
+        
     }
-
-    // Wrap weapon properties in .form-fields
-    if ($(`div[data-appid="${app.appId}"]`).find('.weapon-properties').length > 0) {
-        $(`div[data-appid="${app.appId}"]`).find('.weapon-properties').append('<div class="form-fields"></div>');
-        $(`div[data-appid="${app.appId}"]`).find('.weapon-properties').children().each(function() {
-            if ($(this).hasClass('checkbox')) {
-                $(this).appendTo($(this).parent().find('.form-fields'));
-            }
-        });
-    }
-
-    // When you click on one of the navigation tabs on the item sheet, it removes
-    // the class .active from everything, including my form section tabs.
-    // This click event makes it that everytime the user clicks on details,
-    // it also triggers a click on the first tab, so that it get an .active
-    $(`div[data-appid="${app.appId}"]`).on('click', 'a.item[data-tab="details"]', function() {
-        $(`div[data-appid="${app.appId}"] .form-tab-${prevTab}`).trigger('click');
-    });
 
 });
+
+// Hooks on canvas config windows
+
+Hooks.on("renderTokenConfig", (app) => {
+    setTimeout(() => {
+        configSheetOrganizer(app);
+    }, 1); // Make it not happen instantly, giving time for other modules to add their stuff
+});
+
+Hooks.on("renderMeasuredTemplateConfig", (app) => {
+    configSheetOrganizer(app);
+});
+
+Hooks.on("renderDrawingConfig", (app) => {
+    configSheetOrganizer(app);
+});
+
+Hooks.on("renderWallConfig", (app) => {
+    configSheetOrganizer(app);
+});
+
+Hooks.on("renderLightConfig", (app) => {
+    configSheetOrganizer(app);
+});
+
+Hooks.on("renderAmbientSoundConfig", (app) => {
+    configSheetOrganizer(app);
+});
+
+Hooks.on("renderAmbientSoundConfig", (app) => {
+    configSheetOrganizer(app);
+});
+
+
 
 
 /* ---------------------------- */
@@ -215,6 +239,10 @@ function formFieldOrganizer(app) {
 
     $(`div[data-appid="${app.appId}"] .form-group`).each(function() {
 
+        let labelAlign = game.settings.get('twilight-forms', 'label-alignment');
+        $(this).addClass(labelAlign);
+        
+
         // Remove the Stacked class if the table is running DnD 5e
         if ($(this).hasClass('stacked') && $('body').hasClass('system-dnd5e')) {
             $(this).removeClass('stacked');
@@ -252,4 +280,18 @@ function formFieldOrganizer(app) {
 
     });
 
+}
+
+
+
+
+
+
+
+function configSheetOrganizer(app) {
+    $(`div[data-appid="${app.appId}"]`).addClass('tui-form');
+    formFieldOrganizer(app);
+
+    // Resize the window to fit it's contents
+    $(`div[data-appid="${app.appId}"]`).css('height', 'auto');
 }

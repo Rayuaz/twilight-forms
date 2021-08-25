@@ -8,12 +8,13 @@
         "email": "alan@tpk.gg",
         "discord": "Sua mãe, Aquela Católica#2512"
     },
-    "version": "1.00",
+    "version": "1.10",
     "minimumCoreVersion": "0.8.8",
-    "compatibleCoreVersion": "0.8.8",
+    "compatibleCoreVersion": "0.8.9",
     "scripts": [
-        "form_sections.js",
-        "module_settings_organizer.js"
+        "scripts/form_sections.js",
+        "scripts/module_settings_organizer.js",
+        "scripts/settings.js"
     ],
     "styles": [
         "form-sections.css"

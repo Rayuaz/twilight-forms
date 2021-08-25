@@ -30,27 +30,64 @@ input[type="checkbox"]:hover {
         background-color: rgba(0,0,0,.05);
     }
 
-    > label {
-        text-align: right;
-
-        &.for-checkbox:hover {
-            cursor: pointer;
-        }
-    }
-
     .form-fields {
         justify-content: start;
         flex-wrap: wrap;
     }
 
-    .notes, .hints {
-        padding-left: calc(40% + 13px);
+    // Right Aligned Labels
+    &.tui-right {
+        > label {
+            text-align: right;
+    
+            &.for-checkbox:hover {
+                cursor: pointer;
+            }
+        }
+    
+        .notes, .hints {
+            padding-left: calc(40% + 13px);
+        }
+    
+        label.checkbox {
+            width: calc(100% / 3);
+            margin: 0;
+            text-align: left;
+        }
     }
 
-    label.checkbox {
-        width: calc(100% / 3);
-        margin: 0;
-        text-align: left;
+    // Top Aligned Labels
+    &.tui-top {
+        padding-left: 40px;
+        position: relative;
+
+        > label {
+            flex: 0 0 100%;
+        }
+
+        .form-fields,
+        > input {
+            //flex: 0 0 60%;
+            flex: 0 0 calc(100% - 40px);
+        }
+
+        &.has-checkbox {
+            &:hover {
+                cursor: pointer;
+            }
+
+            .form-fields {
+                position: absolute;
+                top: .9em;
+                left: 10px;
+            }
+        }
+    
+        .notes, .hint {
+            text-align: left;
+            padding: 0;
+            flex: 0 0 60%;
+        }
     }
 }
 
